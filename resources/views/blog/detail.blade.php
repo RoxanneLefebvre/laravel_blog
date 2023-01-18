@@ -10,23 +10,27 @@
     <div class="row">
         <div class="col-12 text-center pt-5">
             <h1 class="display-one mt-5">
-            {{ $blog->title }}
+            {{ $blogPost->title }}
             </h1>
             <hr>
-            <p>{{  $blog->body }}
+            <p>{{  $blogPost->body }}
             </p>
-            <small>{{ $blog->created_at }}</small>
-            <strong> author: {{ $blog->user_id }}</strong>
+            <small>{{ $blogPost->created_at }}</small>
+            <strong> author: {{ $blogPost->user_id }}</strong>
             <hr>
         </div>
     </div>
 </div>
 <div class="row text-center">
     <div class="col-6">
-        <a href="" class="btn btn-success">mettre a jour</a>
+        <a href="{{ route('blog.edit', $blogPost->id)}}" class="btn btn-success">mettre a jour</a>
     </div>
     <div class="col-6">
-        <a href="" class="btn btn-danger">effacer</a>
+        <form action="">
+            @csrf
+            @method('delete')
+            <input type="submit" class="btn btn-danger" vlaue="Effacer">
+        </form>
     </div>
 
 </div>

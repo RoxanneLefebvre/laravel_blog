@@ -22,3 +22,6 @@ Route::get('blog', [blogPostController::class, 'index'])->name('blog.index');
 Route::get('blog/{blogPost}', [blogPostController::class, 'show'])->name('blog.show');
 Route::get('blog-create', [blogPostController::class, 'create'])->name('blog.create');
 Route::post('blog-create', [blogPostController::class, 'store']); // pas besoin de nom 
+Route::get('blog-edit/{blogPost}', [blogPostController::class, 'edit'])->name('blog.edit');
+Route::put('blog-edit/{blogPost}', [blogPostController::class, 'update']);
+Route::delete('blog-edit/{blogPost}', [blogPostController::class, 'destroy']);

@@ -43,7 +43,7 @@ class BlogPostController extends Controller
             'user_id'=> 1,
         ]);
 
-        return $newPost->id;
+        return redirect(route('blog.show', $newPost));
     }
 
     /**
@@ -54,7 +54,7 @@ class BlogPostController extends Controller
      */
     public function show(BlogPost $blogPost)
     {
-        return view('blog.detail', ['blog'=>$blogPost]);
+        return view('blog.detail', ['blogPost'=>$blogPost, 'test'=>'blabla']);
     }
 
     /**
@@ -65,7 +65,7 @@ class BlogPostController extends Controller
      */
     public function edit(BlogPost $blogPost)
     {
-        //
+        return view('blog.edit', ['blogPost'=>$blogPost]);
     }
 
     /**
@@ -77,7 +77,12 @@ class BlogPostController extends Controller
      */
     public function update(Request $request, BlogPost $blogPost)
     {
-        //
+        $blogPost->update([ //pas de nouvelle instanciation car le post existe deja :: ca ca instantie lol
+            'title'=> $request->title,
+            'body'=> $request->body
+        ]);
+
+        return redirect(route('blog.show', $blogPost->id));
     }
 
     /**
