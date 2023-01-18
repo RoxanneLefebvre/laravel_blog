@@ -93,6 +93,8 @@ class BlogPostController extends Controller
      */
     public function destroy(BlogPost $blogPost)
     {
-        //
+        $blogPost->delete();
+        
+        return redirect(route('blog.index'));
     }
 }

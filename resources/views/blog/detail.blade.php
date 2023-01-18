@@ -26,10 +26,10 @@
         <a href="{{ route('blog.edit', $blogPost->id)}}" class="btn btn-success">mettre a jour</a>
     </div>
     <div class="col-6">
-        <form action="">
+        <form action="{{ route('blog.edit', $blogPost->id)}}" method="post">
             @csrf
             @method('delete')
-            <input type="submit" class="btn btn-danger" vlaue="Effacer">
+            <input type="submit" class="btn btn-danger" value="Effacer">
         </form>
     </div>
 
