@@ -157,4 +157,12 @@ class BlogPostController extends Controller
 
         return $query;
     }
+
+    public function page(){
+        $blogPosts = BlogPost::select()
+        ->paginate(5);
+        
+        return view('blog.page',['blogPosts'=>$blogPosts]);
+    }
 }
+

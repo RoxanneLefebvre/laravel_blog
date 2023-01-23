@@ -28,4 +28,5 @@ Route::delete('blog-edit/{blogPost}', [blogPostController::class, 'destroy']);
 
 
 Route::get('query', [blogPostController::class, 'query']);
+Route::get('page', [blogPostController::class, 'page']);
 
