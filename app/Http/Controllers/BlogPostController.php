@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BlogPostController extends Controller
 {
@@ -96,5 +97,64 @@ class BlogPostController extends Controller
         $blogPost->delete();
         
         return redirect(route('blog.index'));
+    }
+
+    public function query()
+    {//select * from blog_posts;
+       //$query = BlogPost::all();
+
+       //meme chose mais plus flexible peux selectionner certaine chose
+       //$query = BlogPost::select('title')->get();
+
+       //WHERE
+    //    $query = BlogPost::select()
+    //    ->where('user_id', 90)
+    //    ->get();
+        //si on ne met rien il comprend que cest egal a .
+        //sinon comme ci dessous
+    //     $query = BlogPost::select()
+    //    ->where('user_id','>', 90)
+    //    ->get();
+
+    //select * from blog_posts where id = ?
+    // $query = BlogPost::find(1);
+
+    //deux where equivaut a un and
+    // $query = BlogPost::select()
+    // ->where('user_id', 81)
+    // ->where('id', 1)
+    // ->get();
+
+    // OR
+    // $query = BlogPost::select()
+    // ->where('user_id', 90)
+    // ->orWhere('id', 1)
+    // ->get();
+
+    //ORDER BY
+    // $query = BlogPost::select()
+    // ->orderBy('title', 'desc')
+    // ->get();
+
+    //INNERJOIN
+    // $query = BlogPost::select()
+    //  ->join('users', 'users.id', '=', 'user_id')
+    //  ->get();
+
+    //RIGHT OUTER JOIN me donne aussi les user qui nont pas ecrit de post
+    // $query = BlogPost::select()
+    // ->rightjoin('users', 'users.id', '=', 'user_id')
+    // ->get();
+
+    //aggregation
+    // $query = BlogPost::max('id');
+    // $query = BlogPost::select()//combien de post
+    // ->count();
+
+    $query = BlogPost::select(DB::raw('count(*) as blogs, user_id'))
+    ->groupBy('user_id')
+    ->get();
+
+        return $query;
     }
 }

@@ -16,7 +16,7 @@
             <p>{{  $blogPost->body }}
             </p>
             <small>{{ $blogPost->created_at }}</small>
-            <strong> author: {{ $blogPost->user_id }}</strong>
+            <strong> author: {{ $blogPost->blogHasUser->name }}</strong>
             <hr>
         </div>
     </div>

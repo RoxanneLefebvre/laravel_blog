@@ -16,4 +16,8 @@ class BlogPost extends Model
         'body',
         'user_id'
     ];
+
+    public function blogHasUser(){
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
+    }
 }
