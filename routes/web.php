@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogPostController;
+use App\Http\Controllers\CustomAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,8 @@ Route::delete('blog-edit/{blogPost}', [blogPostController::class, 'destroy']);
 
 Route::get('query', [blogPostController::class, 'query']);
 Route::get('page', [blogPostController::class, 'page']);
+
+
+
+Route::get('registration', [CustomAuthController::class, 'create'])->name('user.create');
 
