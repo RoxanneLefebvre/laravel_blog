@@ -34,4 +34,5 @@ Route::get('page', [blogPostController::class, 'page']);
 
 
 Route::get('registration', [CustomAuthController::class, 'create'])->name('user.create');
+Route::post('registration', [CustomAuthController::class, 'store'])->name('user.store');
 
