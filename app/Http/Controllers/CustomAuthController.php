@@ -39,13 +39,29 @@ class CustomAuthController extends Controller
      */
     public function store(Request $request)
     {
-        $newPost = BlogPost::create([
-            'title'=> $request->title,
-            'body'=> $request->body,
-            'user_id'=> 1,
+        // $newUser = User::create([
+        //     'name'=> $request->title,
+        //     'email'=> $request->body,
+        //     'password'=> 1,
+        // ]);
+
+        // return redirect(route('blog.show', $newPost));    //autre facon de le faire ci dessous
+
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|email|unique:users',
+            'password'=>'required|min:6|max:20'
         ]);
 
-        return redirect(route('blog.show', $newPost));
+        
+
+        $user = new User;
+        $user->fill($request->all());
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect(route('blog.index', $user));
+
     }
 
     /**

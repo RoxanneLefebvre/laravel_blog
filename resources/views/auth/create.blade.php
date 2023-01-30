@@ -19,13 +19,28 @@
                         <form action="" method="POST">
                             @csrf
                             <div class="form-group mb-3">
-                                <input type="text" placeholder="name" class="form-control" name="name">
+                                <input type="text" placeholder="name" class="form-control" name="name" value="{{old('name')}}">
+                                @if ($errors->has('name'))
+                                    <div class="text-danger mt-2">
+                                        {{$errors->first('name')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="form-group mb-3">
-                                <input type="text" placeholder="email" class="form-control" name="email">
+                                <input type="email" placeholder="email" class="form-control" name="email" value="{{old('email')}}">
+                                @if ($errors->has('email'))
+                                    <div class="text-danger mt-2">
+                                        {{$errors->first('email')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="form-group mb-3">
                                 <input type="password" placeholder="password" class="form-control" name="password">
+                                @if ($errors->has('password'))
+                                    <div class="text-danger mt-2">
+                                        {{$errors->first('password')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="d-grid mx-auto">
                                 <input type="submit" class="btn btn-dark" value="Envoyer">
