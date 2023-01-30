@@ -18,7 +18,7 @@ class CustomAuthController extends Controller
      */
     public function index()
     {
-        //
+        return view('auth.index');
     }
 
     /**
@@ -60,7 +60,7 @@ class CustomAuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect(route('blog.index', $user));
+        return redirect()->back()->withSuccess('Utilisateur enregistrer!');
 
     }
 
