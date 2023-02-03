@@ -34,6 +34,8 @@ Route::get('page', [blogPostController::class, 'page']);
 
 
 Route::get('login', [CustomAuthController::class, 'index'])->name('user.index');
+Route::post('login', [CustomAuthController::class, 'authentification'])->name('user.auth');
+
 Route::get('registration', [CustomAuthController::class, 'create'])->name('user.create');
 Route::post('registration', [CustomAuthController::class, 'store'])->name('user.store');
 

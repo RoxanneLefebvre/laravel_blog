@@ -17,6 +17,7 @@
     <div class="navbar-nav">
     <a href="{{ route('blog.index')}}" class="nav-item nav-link active">Accueil</a>
         <a href="{{ route('user.create')}}" class="nav-item nav-link">Registration</a>
+        <a href="{{ route('user.index')}}" class="nav-item nav-link">Login</a>
     </div>
   </div>
 </nav>
