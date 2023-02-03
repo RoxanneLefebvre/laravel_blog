@@ -108,4 +108,13 @@ class CustomAuthController extends Controller
     {
         //
     }
+
+    public function authentification(Request $request)
+    {
+        $request->validate([
+            'email'=>'required|email',
+            'password'=>'required|min:6|max:20'
+        ]);
+        
+    }
 }
