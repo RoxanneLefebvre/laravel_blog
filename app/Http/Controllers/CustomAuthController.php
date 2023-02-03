@@ -28,6 +28,8 @@ class CustomAuthController extends Controller
      */
     public function create()
     {
+
+        
         return view('auth.create');
     }
 
@@ -109,21 +111,46 @@ class CustomAuthController extends Controller
         //
     }
 
+   
+
     public function authentification(Request $request)
     {
+        echo "hello";
         $request->validate([
-            'email'=>'required|email',
+            'email'=>'required|email|exists:users',
             'password'=>'required|min:6|max:20'
         ]);
 
         $credentials = $request->only('email', 'password');
 
         if(!Auth::validate($credentials)):
-            return redirect('login')
-                ->withErrors(trans('auth.failed'));
+            return redirect(route('user.index'))
+                ->withErrors(trans('auth.failed'))
+                ->withInput();
         endif;
+
+        $user = Auth::getProvider()->retrieveByCredentials($credentials);
+
+        Auth::login($user, $request->get('remember'));
+        return redirect()->intended('dashboard')->withSuccess('signed in');
 
 
         
+    }
+
+    public function dashboard()
+    {
+        $name = 'guest';
+        if(Auth::check()){
+            $name = Auth::user()->name;
+        }
+        return view('dashboard', ['name'=> $name]);
+    }
+
+    public function logout()
+    {
+        Session::flush();
+        Auth::logout();
+        return redirect(route('user.index'));
     }
 }

@@ -39,3 +39,5 @@ Route::post('login', [CustomAuthController::class, 'authentification'])->name('u
 Route::get('registration', [CustomAuthController::class, 'create'])->name('user.create');
 Route::post('registration', [CustomAuthController::class, 'store'])->name('user.store');
 
+Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->name('dashboard');
+Route::get('logout', [CustomAuthController::class, 'logout'])->name('logout');

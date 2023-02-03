@@ -15,10 +15,11 @@
                     <div class="alert alert-success">
                         {{session('success')}}
                     </div>
+                    @endif
                     @if($errors)
                     <ul>
                         @foreach($errors->all() as $error)
-                        <li class="text-danger">$error</li>
+                        <li class="text-danger">{{ $error }}</li>
                         @endforeach
                     </ul>
                     @endif
@@ -26,12 +27,11 @@
                     <strong>Holy guacamole!</strong> You should check in on some of those fields below.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div> -->
-                        @endif
                         <form action="{{ route('user.auth')}}"  method="POST">
                             @csrf
 
                             <div class="form-group mb-3">
-                                <input type="email" placeholder="email" class="form-control" name="email">
+                                <input type="email" placeholder="email" class="form-control" name="email" value="{{old('email')}}">
                                 @if ($errors->has('email'))
                                     <div class="text-danger mt-2">
                                         {{$errors->first('email')}}

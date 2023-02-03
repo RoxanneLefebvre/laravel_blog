@@ -8,21 +8,27 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css')}}">
 </head>
 
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand p-2" href="{{ route('blog.index')}}">BLOG</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-    <a href="{{ route('blog.index')}}" class="nav-item nav-link active">Accueil</a>
-        <a href="{{ route('user.create')}}" class="nav-item nav-link">Registration</a>
-        <a href="{{ route('user.index')}}" class="nav-item nav-link">Login</a>
-    </div>
-  </div>
-</nav>
 
 <body>
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Hello @if(Auth::check()) {{ Auth::user()->name }} @else guest @endif</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          @guest  
+              <a class="nav-link" href="{{route('user.create')}}">Registration</a>
+              <a class="nav-link" href="{{route('user.index')}}">Login</a>
+          @else
+              <a class="nav-link" href="{{route('blog.index')}}">Blogs</a>
+              <a class="nav-link" href="{{route('logout')}}">Logout</a>
+          @endguest    
+        </div>
+      </div>
+    </div>
+  </nav>
     @yield('content')
     
 </body>
