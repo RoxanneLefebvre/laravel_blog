@@ -115,6 +115,15 @@ class CustomAuthController extends Controller
             'email'=>'required|email',
             'password'=>'required|min:6|max:20'
         ]);
+
+        $credentials = $request->only('email', 'password');
+
+        if(!Auth::validate($credentials)):
+            return redirect('login')
+                ->withErrors(trans('auth.failed'));
+        endif;
+
+
         
     }
 }
