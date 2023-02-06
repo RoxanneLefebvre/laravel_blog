@@ -19,13 +19,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('blog', [blogPostController::class, 'index'])->name('blog.index');
-Route::get('blog/{blogPost}', [blogPostController::class, 'show'])->name('blog.show');
-Route::get('blog-create', [blogPostController::class, 'create'])->name('blog.create');
-Route::post('blog-create', [blogPostController::class, 'store']); // pas besoin de nom 
-Route::get('blog-edit/{blogPost}', [blogPostController::class, 'edit'])->name('blog.edit');
-Route::put('blog-edit/{blogPost}', [blogPostController::class, 'update']);
-Route::delete('blog-edit/{blogPost}', [blogPostController::class, 'destroy']);
+Route::get('blog', [blogPostController::class, 'index'])->name('blog.index')->middleware('auth');
+Route::get('blog/{blogPost}', [blogPostController::class, 'show'])->name('blog.show')->middleware('auth');
+Route::get('blog-create', [blogPostController::class, 'create'])->name('blog.create')->middleware('auth');
+Route::post('blog-create', [blogPostController::class, 'store'])->middleware('auth'); // pas besoin de nom 
+Route::get('blog-edit/{blogPost}', [blogPostController::class, 'edit'])->name('blog.edit')->middleware('auth');
+Route::put('blog-edit/{blogPost}', [blogPostController::class, 'update'])->middleware('auth');
+Route::delete('blog-edit/{blogPost}', [blogPostController::class, 'destroy'])->middleware('auth');
 
 
 Route::get('query', [blogPostController::class, 'query']);
@@ -33,7 +33,8 @@ Route::get('page', [blogPostController::class, 'page']);
 
 
 
-Route::get('login', [CustomAuthController::class, 'index'])->name('user.index');
+
+Route::get('login', [CustomAuthController::class, 'index'])->name('login');
 Route::post('login', [CustomAuthController::class, 'authentification'])->name('user.auth');
 
 Route::get('registration', [CustomAuthController::class, 'create'])->name('user.create');

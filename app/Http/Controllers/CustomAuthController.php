@@ -115,7 +115,7 @@ class CustomAuthController extends Controller
 
     public function authentification(Request $request)
     {
-        echo "hello";
+       
         $request->validate([
             'email'=>'required|email|exists:users',
             'password'=>'required|min:6|max:20'
@@ -124,7 +124,7 @@ class CustomAuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if(!Auth::validate($credentials)):
-            return redirect(route('user.index'))
+            return redirect(route('login'))
                 ->withErrors(trans('auth.failed'))
                 ->withInput();
         endif;
@@ -140,17 +140,23 @@ class CustomAuthController extends Controller
 
     public function dashboard()
     {
-        $name = 'guest';
+        // $name = 'guest';
+        // if(Auth::check()){
+        //     $name = Auth::user()->name;
+        // }
+        // return view('dashboard', ['name'=> $name]);
+
         if(Auth::check()){
-            $name = Auth::user()->name;
+            return view('dashboard');
         }
-        return view('dashboard', ['name'=> $name]);
+            return redirect(route('login'))->withErrors('non autoriser');
+        
     }
 
     public function logout()
     {
         Session::flush();
         Auth::logout();
-        return redirect(route('user.index'));
+        return redirect(route('login'));
     }
 }

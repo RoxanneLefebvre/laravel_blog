@@ -6,7 +6,7 @@
 
 
 <div class="container">
-    <a href="{{ route('blog.index')}}" class="btn btn-outline-primary">retourne sur la page d'acceuil</a>
+   
     <div class="row">
         <div class="col-12 text-center mt-2">
             <h1 class="display-one">Ajouter un article</h1>
