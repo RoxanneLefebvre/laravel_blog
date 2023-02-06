@@ -19,6 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('blog', [blogPostController::class, 'index'])->name('blog.index')->middleware('auth');
 Route::get('blog/{blogPost}', [blogPostController::class, 'show'])->name('blog.show')->middleware('auth');
 Route::get('blog-create', [blogPostController::class, 'create'])->name('blog.create')->middleware('auth');
