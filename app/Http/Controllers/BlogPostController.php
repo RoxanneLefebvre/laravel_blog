@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
+use App\Models\Categorie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,10 @@ class BlogPostController extends Controller
      */
     public function create()
     {
-        return view('blog.create');
+        $categorie = new Categorie;
+        $categorie = $categorie->selectCategorie();
+        //si methode static donc pas de instanciation de la classe, on ferait $categorie = Categorie::selectCategorie();
+        return view('blog.create', ['categories'=>$categorie]);
     }
 
     /**
@@ -42,7 +46,8 @@ class BlogPostController extends Controller
         $newPost = BlogPost::create([
             'title'=> $request->title,
             'body'=> $request->body,
-            'user_id'=> Auth::user()->id
+            'user_id'=> Auth::user()->id,
+            'categories_id'=>$request->categories_id
         ]);
 
         return redirect(route('blog.show', $newPost));
@@ -67,7 +72,11 @@ class BlogPostController extends Controller
      */
     public function edit(BlogPost $blogPost)
     {
-        return view('blog.edit', ['blogPost'=>$blogPost]);
+        // fait un changeement dans model pour avoir la function pour avoir les categorie au lieu de la recopier encore une fois
+        $categorie = new Categorie;
+        $categorie = $categorie->selectCategorie();
+        
+        return view('blog.edit', ['blogPost'=>$blogPost, 'categories'=>$categorie]);
     }
 
     /**

@@ -14,10 +14,14 @@ class BlogPost extends Model
     protected $fillable = [ //les champ dans la base de donner quon veux modifier, ne pas mettre les auto ecrement
         'title',
         'body',
-        'user_id'
+        'user_id',
+        'categories_id'
     ];
 
     public function blogHasUser(){
         return $this->hasOne('App\Models\User', 'id', 'user_id');
+    }
+    public function blogHasCategorie(){
+        return $this->hasOne('App\Models\Categorie', 'id', 'categories_id');
     }
 }

@@ -36,6 +36,15 @@
                         <label for="body">post</label>
                         <textarea name="body" id="body" class="form-control"></textarea>
                     </div>
+                    <div class="control-group col-12">
+                        <label for="categorie">categorie</label>
+                        <select name="categories_id" id="categorie" class="form-control">
+                            <option value=""selected disabled>select a value</option>
+                            @foreach($categories as $categorie)
+                            <option value="{{$categorie->id}}">{{$categorie->categorie}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <input type="submit" value="save" class="btn btn-success">

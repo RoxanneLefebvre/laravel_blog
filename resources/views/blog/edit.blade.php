@@ -37,6 +37,15 @@
                         <label for="body">post</label>
                         <textarea name="body" id="body" class="form-control">{{ $blogPost->body }}</textarea>
                     </div>
+                    <div class="control-group col-12">
+                        <label for="categorie">categorie</label>
+                        <select name="categories_id" id="categorie" class="form-control">
+                            <option value=""disabled>select a value</option>
+                            @foreach($categories as $categorie)
+                            <option value="{{$categorie->id}}" {{$categorie->id == $blogPost->categorie_id ? 'selected' : 'n'}}> {{$categorie->categorie}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <input type="submit" value="mettre a jour" class="btn btn-success">

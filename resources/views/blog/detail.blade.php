@@ -15,8 +15,9 @@
             <hr>
             <p>{{  $blogPost->body }}
             </p>
-            <small>{{ $blogPost->created_at }}</small>
-            <strong> author: {{ $blogPost->blogHasUser->name }}</strong>
+            <strong><span>creer : </strong>{{ $blogPost->created_at }}</span>
+            <strong><span>Categorie :</strong> {{ $blogPost->blogHasCategorie->categorie }}</span>
+            <strong><span> author :</strong> {{ $blogPost->blogHasUser->name }}</span>
             <hr>
         </div>
     </div>
