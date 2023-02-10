@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogPostController;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\localisationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +44,6 @@ Route::post('registration', [CustomAuthController::class, 'store'])->name('user.
 
 Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->name('dashboard');
 Route::get('logout', [CustomAuthController::class, 'logout'])->name('logout');
+
+
+Route::get('/lang/{locale}', [localisationController::class, 'index'])->name('lang');
