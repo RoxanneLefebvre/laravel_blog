@@ -8,6 +8,10 @@
             <h1 class="display-one mt-5">
             {{ config('app.name')}}
             </h1>
+            <h2>
+                @lang('lang.my_blog')
+
+            </h2>
             <hr>
             <div class="row">
                 <div class="col-8">

@@ -24,7 +24,9 @@
           @else
               <a class="nav-link" href="{{route('blog.index')}}">Blogs</a>
               <a class="nav-link" href="{{route('logout')}}">Logout</a>
-          @endguest    
+          @endguest
+            <a class="nav-link" href="{{route('lang', 'en')}}">English</a>
+            <a class="nav-link" href="{{route('lang', 'fr')}}">Francais</a>    
         </div>
       </div>
     </div>
