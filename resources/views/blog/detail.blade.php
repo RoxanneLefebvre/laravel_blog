@@ -16,7 +16,7 @@
             <p>{{  $blogPost->body }}
             </p>
             <strong><span>creer : </strong>{{ $blogPost->created_at }}</span>
-            <strong><span>Categorie :</strong> {{ $blogPost->blogHasCategorie->categorie }}</span>
+            <strong><span>Categorie :</strong> @isset($blogPost->blogHasCategorie) {{ $blogPost->blogHasCategorie->categorie }} @endisset</span>
             <strong><span> author :</strong> {{ $blogPost->blogHasUser->name }}</span>
             <hr>
         </div>
