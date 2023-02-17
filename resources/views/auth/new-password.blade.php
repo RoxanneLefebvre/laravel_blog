@@ -8,7 +8,7 @@
         <div class="col-md-4 pt-4">
             <div class="card">
                 <h3 class="card-header text-center">
-                    Log in
+                    New password
                 </h3>
                 <div class="card-body">
                     @if(session('success'))
@@ -27,19 +27,22 @@
                     <strong>Holy guacamole!</strong> You should check in on some of those fields below.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div> -->
-                        <form action="{{ route('user.auth')}}"  method="POST">
+                        <form action="{{ route('')}}"  method="POST">
                             @csrf
 
+                           
                             <div class="form-group mb-3">
-                                <input type="email" placeholder="email" class="form-control" name="email" value="{{old('email')}}">
-                                @if ($errors->has('email'))
+                                <input type="password" placeholder="password" class="form-control" name="password">
+                                @if ($errors->has('password'))
                                     <div class="text-danger mt-2">
-                                        {{$errors->first('email')}}
+                                        {{$errors->first('password')}}
                                     </div>
                                 @endif
                             </div>
+                            
+
                             <div class="form-group mb-3">
-                                <input type="password" placeholder="password" class="form-control" name="password">
+                                <input type="password" placeholder="comfirm_password" class="form-control" name="password>
                                 @if ($errors->has('password'))
                                     <div class="text-danger mt-2">
                                         {{$errors->first('password')}}

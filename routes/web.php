@@ -45,5 +45,9 @@ Route::post('registration', [CustomAuthController::class, 'store'])->name('user.
 Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->name('dashboard');
 Route::get('logout', [CustomAuthController::class, 'logout'])->name('logout');
 
+Route::get('forgot-password', [CustomAuthController::class, 'forgotPassword'])->name('forgot.pass');
+Route::post('forgot-password', [CustomAuthController::class, 'tempPassword'])->name('temp.pass');
+Route::get('new-password/{user}/{tempPassword}', [CustomAuthController::class, 'newPassword'])->name('new.pass');
+
 
 Route::get('/lang/{locale}', [localisationController::class, 'index'])->name('lang');

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 
 class CustomAuthController extends Controller
@@ -64,7 +66,23 @@ class CustomAuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->back()->withSuccess('Utilisateur enregistrer!');
+        $to_name = $request->name;
+        $to_email = $request->email;
+
+        $body="<a href='route'>cliquez ici pour confirmer votre compte</a>";
+
+        Mail::send('email.mail', $data=
+        [
+            'name'=>$to_name,
+            'body'=>$body
+        ],
+
+        function($message) use ($to_name, $to_email)
+        {
+            $message->to($to_email, $to_name)->subject('Courrier de test');
+        });
+
+        return redirect()->back()->withSuccess(trans('lang.msg_succes'));
 
     }
 
@@ -160,5 +178,37 @@ class CustomAuthController extends Controller
         Session::flush();
         Auth::logout();
         return redirect(route('login'));
+    }
+
+    public function forgotPassword()
+    {
+        return view('auth.forgot-password');
+  
+    }
+    public function tempPassword(Request $request)
+    {
+        $request->validate([
+            'email'=>'required|email|exists:users',
+        ]);
+
+        $user= User::where('email', $request->email)->get();
+
+        $user = $user[0];
+        $userId = $user->id;
+
+        $tempPass = str::random(25);
+        $user->temp_password = $tempPass;
+        $user->save();
+
+        $link = "<a href='/new-password/".$userId."/".$tempPass."'>Cliques ici pour reinitialiser votre mot de passe</a>";
+        return $link;
+  
+    }
+
+    public function newPassword(User $user, $tempPassword){
+        if($user->temp_password === $tempPassword){
+            return view ('auth.new-password');
+        }
+        return redirect('forgot-password')->withErrors('les identifiants ne correspondent pas');
     }
 }
