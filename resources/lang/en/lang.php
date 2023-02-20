@@ -7,7 +7,7 @@ return [
     'hello'   =>  'hello',
     'msg_welcome'=>'Welcome to maisonneuve blog',
     'msg_succes'=>'user saved! check your mail',
-    'msg_pass.changed'=>'Your password was changed!',
+    'msg_pass_changed'=>'Your password was changed!',
     
     
 ];

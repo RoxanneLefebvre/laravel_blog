@@ -7,5 +7,5 @@ return [
     'hello'   =>  'Salut',
     'msg_welcome'=>'Bienvenue au blog Maisonneuve!',
     'msg_succes'=>'utilisateur enregistrer',
-    'msg_pass.changed'=>'Votre mot de passe a ete changé',
+    'msg_pass_changed'=>'Votre mot de passe a ete changé',
 ];

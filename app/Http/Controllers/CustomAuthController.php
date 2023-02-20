@@ -200,8 +200,26 @@ class CustomAuthController extends Controller
         $user->temp_password = $tempPass;
         $user->save();
 
-        $link = "<a href='/new-password/".$userId."/".$tempPass."'>Cliques ici pour reinitialiser votre mot de passe</a>";
-        return $link;
+        //return $link;
+        $to_email = $user->email;
+        $to_name = $user->name;
+        $link = "<a href='http://localhost:8000/new-password/".$userId."/".$tempPass."'>Cliques ici pour reinitialiser votre mot de passe</a>";
+
+
+        Mail::send('email.mail', $data=
+        [
+            'name'=>$to_name,
+            'body'=>$link
+        ],
+
+        function($message) use ($to_name, $to_email)
+        {
+            $message->to($to_email, $to_name)->subject('Reset Password');
+        });
+
+        return redirect()->back()->withSuccess('check your email to change password');
+
+        
   
     }
 
@@ -223,7 +241,7 @@ class CustomAuthController extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
         
-            return redirect(route('login'))->withSuccess(trans('lang.pass.changed'));
+            return redirect(route('login'))->withSuccess(trans('lang.pass_changed'));
 
         }
         return redirect('forgot-password')->withErrors('les identifiants ne correspondent pas');
