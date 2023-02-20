@@ -211,4 +211,21 @@ class CustomAuthController extends Controller
         }
         return redirect('forgot-password')->withErrors('les identifiants ne correspondent pas');
     }
+
+
+    public function storeNewPassword(User $user, $tempPassword, Request $request){
+        if($user->temp_password === $tempPassword){
+            $request->validate([
+
+                'password'=>'required|min:6|confirmed',
+            ]);
+            $user->temp_password=null;
+            $user->password = Hash::make($request->password);
+            $user->save();
+        
+            return redirect(route('login'))->withSuccess('le mot de passe a ete changer');
+
+        }
+        return redirect('forgot-password')->withErrors('les identifiants ne correspondent pas');
+    }
 }

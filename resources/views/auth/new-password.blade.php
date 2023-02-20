@@ -43,8 +43,8 @@
                             <div>
 
                             <div class="form-group mb-3">
-                                <input type="password" placeholder="comfirm password" class="form-control" name="password">
-                                @if ($errors->has('password'))
+                                <input type="password" placeholder="comfirm password" class="form-control" name="password_confirmation">
+                                @if ($errors->has('password_confirmation'))
                                     <div class="text-danger mt-2">
                                         {{$errors->first('password')}}
                                     </div>
