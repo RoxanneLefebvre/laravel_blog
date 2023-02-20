@@ -7,6 +7,8 @@ use App\Models\Categorie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+//use PDF;
+use Barryvdh\DomPDF\facade\PDF;
 
 class BlogPostController extends Controller
 {
@@ -178,9 +180,11 @@ class BlogPostController extends Controller
     public function pdf(BlogPost $blogPost){
         //return $blogPost;
 
-        return view('blog.show-pdf', [
-            'blogPst'=> $blogPost,
+        $pdf = PDF::loadview('blog.show-pdf', [
+            'blogPost'=> $blogPost,
         ]);
+
+        return $pdf->stream('blog.pdf');
 
     }
 }
