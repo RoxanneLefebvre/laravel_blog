@@ -27,7 +27,7 @@
                     <strong>Holy guacamole!</strong> You should check in on some of those fields below.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div> -->
-                        <form action="{{ route('')}}"  method="POST">
+                        <form action=""  method="POST">
                             @csrf
 
                            
@@ -40,16 +40,17 @@
                                 @endif
                             </div>
                             
+                            <div>
 
                             <div class="form-group mb-3">
-                                <input type="password" placeholder="comfirm_password" class="form-control" name="password>
+                                <input type="password" placeholder="comfirm password" class="form-control" name="password">
                                 @if ($errors->has('password'))
                                     <div class="text-danger mt-2">
                                         {{$errors->first('password')}}
                                     </div>
                                 @endif
                             </div>
-                            <div><a href="{{ route('forgot.pass')}}">Mot de passe oubliez?</a></div>
+
                             <div>
                            
                             </div>

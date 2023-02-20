@@ -207,7 +207,7 @@ class CustomAuthController extends Controller
 
     public function newPassword(User $user, $tempPassword){
         if($user->temp_password === $tempPassword){
-            return view ('auth.new-password');
+           return view('auth.new-password');
         }
         return redirect('forgot-password')->withErrors('les identifiants ne correspondent pas');
     }

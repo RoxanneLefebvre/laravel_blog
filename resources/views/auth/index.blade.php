@@ -46,7 +46,7 @@
                                     </div>
                                 @endif
                             </div>
-                            <div><a href="{{ route('forgot.pass')}}">Mot de passe oubliez?</a></div>
+                            <div class=""><a href="{{ route('forgot.pass')}}">Mot de passe oubliez?</a></div>
                             <div>
                            
                             </div>
