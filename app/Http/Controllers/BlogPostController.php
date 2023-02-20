@@ -174,5 +174,14 @@ class BlogPostController extends Controller
         
         return view('blog.page',['blogPosts'=>$blogPosts]);
     }
+
+    public function pdf(BlogPost $blogPost){
+        //return $blogPost;
+
+        return view('blog.show-pdf', [
+            'blogPst'=> $blogPost,
+        ]);
+
+    }
 }
 
