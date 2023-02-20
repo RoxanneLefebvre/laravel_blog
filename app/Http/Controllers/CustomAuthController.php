@@ -223,7 +223,7 @@ class CustomAuthController extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
         
-            return redirect(route('login'))->withSuccess('le mot de passe a ete changer');
+            return redirect(route('login'))->withSuccess(trans('lang.pass.changed'));
 
         }
         return redirect('forgot-password')->withErrors('les identifiants ne correspondent pas');
